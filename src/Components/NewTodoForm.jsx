@@ -8,22 +8,22 @@ export function NewTodoForm({ onSubmit }) {
     if (newItem === "") return
 
     onSubmit(newItem)
-
     setNewItem("")
   }
 
   return (
-    <form onSubmit={handleSubmit} className="new-item-form">
+    <form onSubmit={handleSubmit} >
       <div className="form-row">
-        <label htmlFor="item">New Item</label>
-        <input
+       
+        <input className="todo-input"
+          placeholder="Add new todo"
           value={newItem}
           onChange={e => setNewItem(e.target.value)}
           type="text"
           id="item"
         />
+        <button className="todo-btn">Add</button>
       </div>
-      <button className="btn">Add</button>
     </form>
   )
 }
