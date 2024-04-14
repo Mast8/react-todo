@@ -25,6 +25,16 @@ h1 {
   text-align: center;
 }
 
+.message {
+  display: block;
+  font-size: 12px;
+  text-align: center;
+  
+  margin: auto;
+  color: red;
+  margin-bottom: 0.5rem;
+}
+
 .new-item-form {
   background: #1A1A40;
   margin-top: 5rem;
