@@ -5,10 +5,15 @@ export function NewTodoForm({ onSubmit }) {
 
   function handleSubmit(e) {
     e.preventDefault()
-    if (newItem === "") return
+    if( newItem.trim() != "" ){
 
-    onSubmit(newItem)
-    setNewItem("")
+      onSubmit(newItem)
+      setNewItem("")
+    }
+    else {
+      setNewItem("")
+      alert("Todo can not be empty")
+    }
   }
 
   return (
