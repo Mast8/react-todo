@@ -11,6 +11,7 @@ export function NewTodoForm({ onSubmit }) {
       setMessage("")
     }
     setNewItem("")
+    setMessage("Todo can not be empty")
   }
 
   function updateMessage(newItem) {
@@ -26,7 +27,7 @@ export function NewTodoForm({ onSubmit }) {
         <input className="todo-input"
           placeholder="Add new todo"
           value={newItem}
-           onChange={e => {updateMessage(newItem) ;setNewItem(e.target.value)  } }  
+          onChange={e => {updateMessage(e.target.value) ;setNewItem(e.target.value)  } }  
           
           type="text"
           id="item"
