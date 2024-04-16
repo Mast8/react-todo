@@ -42,9 +42,11 @@ h1 {
 }
 
 .totalTodos {
+  text-align: center;
   display: block;
-  font-size: 12px;
-  color: red;
+  font-size: 15px;
+  color: #fff;
+  padding-bottom: 10px;
 }
 
 .new-item-form {

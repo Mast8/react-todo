@@ -8,18 +8,15 @@ export default function App() {
   const [todos, setTodos] = useState(() => {
     const localValue = localStorage.getItem("ITEMS")
     if (localValue == null) return []
-
     return JSON.parse(localValue)
   })
 
-  const[count, setCount] = useState ({
-    totalTodos:  todos.length, 
-    todoCompleted: todos.filter( todo => todo.completed !== false).length
-     
-  }  )
-  console.log(count.todoCompleted + " initial ");
+  const[countTodos, setCountTodos] = useState (todos.length )
+  const[countCompleted, setCountCompleted] = 
+  useState ( 0 )
 
   useEffect(() => {
+    setCountCompleted( todos.filter( todo => todo.completed !== false).length)
     localStorage.setItem("ITEMS", JSON.stringify(todos))
   }, [todos])
 
@@ -27,16 +24,14 @@ export default function App() {
       
       setTodos(currentTodos => {
         return [
-          
           ...currentTodos,
           { id: crypto.randomUUID(), title, completed: false },
         ]
-      }); setCount( {totalTodos : todos.length+1})
+      }); setCountTodos( countTodos +1 )
 
   }
 
   function toggleTodo(id, completed) {
-    
     
     setTodos(currentTodos => {
       return currentTodos.map(todo => {
@@ -46,19 +41,13 @@ export default function App() {
         return todo
       })
     }); 
-    const countCompleted = todos.filter( todo => todo.completed !== false).length;
-
-    setCount( { totalTodos : todos.length ,
-      todoCompleted : countCompleted })
-    console.log(count.todoCompleted + " completed ")
+    
   }
 
   function deleteTodo(id) {
     setTodos(currentTodos => {
-      
       return currentTodos.filter(todo => todo.id !== id)
-      
-    }); setCount( {totalTodos : todos.length-1})
+    }); setCountTodos( countTodos -1)
   }
 
   function editTodo(id, title) {
@@ -71,13 +60,19 @@ export default function App() {
       })
     })
   }
-
+  var Percentage = Math.round(countCompleted/countTodos*100) ;
   return (
     <>
       <h1> To do app</h1>
       <div className="new-item-form">
       <NewTodoForm onSubmit={addTodo} />
-      {count.totalTodos > 0 ? <div className="totalTodos"> Tasks: {count.totalTodos}</div> : "no tasks" }
+      {countTodos > 0 && 
+      <div className="totalTodos"> Tasks: {countTodos}
+        <div>   Tasks completed: {countCompleted}
+        </div>
+        <div>   Tasks Percentage: {Percentage} %
+        </div>
+      </div>  }
       
       <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} editTodo={editTodo}/>
       </div>
