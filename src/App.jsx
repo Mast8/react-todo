@@ -12,39 +12,52 @@ export default function App() {
     return JSON.parse(localValue)
   })
 
+  const[count, setCount] = useState ({
+    totalTodos:  todos.length, 
+    todoCompleted: todos.filter( todo => todo.completed !== false).length
+     
+  }  )
+  console.log(count.todoCompleted + " initial ");
+
   useEffect(() => {
     localStorage.setItem("ITEMS", JSON.stringify(todos))
   }, [todos])
 
   function addTodo(title) {
-   
+      
       setTodos(currentTodos => {
         return [
+          
           ...currentTodos,
           { id: crypto.randomUUID(), title, completed: false },
         ]
-      })
-    
-    
-    
+      }); setCount( {totalTodos : todos.length+1})
+
   }
 
   function toggleTodo(id, completed) {
+    
+    
     setTodos(currentTodos => {
       return currentTodos.map(todo => {
         if (todo.id === id) {
           return { ...todo, completed }
         }
-
         return todo
       })
-    })
+    }); 
+    const countCompleted = todos.filter( todo => todo.completed !== false).length;
+
+    setCount( { todoCompleted : countCompleted })
+    console.log(count.todoCompleted + " completed ")
   }
 
   function deleteTodo(id) {
     setTodos(currentTodos => {
+      
       return currentTodos.filter(todo => todo.id !== id)
-    })
+      
+    }); setCount( {totalTodos : todos.length-1})
   }
 
   function editTodo(id, title) {

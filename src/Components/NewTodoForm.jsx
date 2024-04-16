@@ -6,12 +6,12 @@ export function NewTodoForm({ onSubmit }) {
 
   function handleSubmit(e) {
     e.preventDefault()
+    updateMessage(newItem)
     if( newItem.trim() != "" ){
-      onSubmit(newItem)
-      setMessage("")
+      onSubmit(newItem.trim())
     }
     setNewItem("")
-    setMessage("Todo can not be empty")
+    
   }
 
   function updateMessage(newItem) {
@@ -28,7 +28,6 @@ export function NewTodoForm({ onSubmit }) {
           placeholder="Add new todo"
           value={newItem}
           onChange={e => {updateMessage(e.target.value) ;setNewItem(e.target.value)  } }  
-          
           type="text"
           id="item"
         />
