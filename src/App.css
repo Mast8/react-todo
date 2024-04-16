@@ -41,6 +41,12 @@ h1 {
   margin-bottom: 0.5rem;
 }
 
+.totalTodos {
+  display: block;
+  font-size: 12px;
+  color: red;
+}
+
 .new-item-form {
   background: #1A1A40;
   margin-top: 5rem;

@@ -48,7 +48,8 @@ export default function App() {
     }); 
     const countCompleted = todos.filter( todo => todo.completed !== false).length;
 
-    setCount( { todoCompleted : countCompleted })
+    setCount( { totalTodos : todos.length ,
+      todoCompleted : countCompleted })
     console.log(count.todoCompleted + " completed ")
   }
 
@@ -76,6 +77,8 @@ export default function App() {
       <h1> To do app</h1>
       <div className="new-item-form">
       <NewTodoForm onSubmit={addTodo} />
+      {count.totalTodos > 0 ? <div className="totalTodos"> Tasks: {count.totalTodos}</div> : "no tasks" }
+      
       <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} editTodo={editTodo}/>
       </div>
       
