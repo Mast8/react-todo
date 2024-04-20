@@ -157,4 +157,8 @@ li {
 }
  
 
-
+@media (max-width: 600px) {
+  .todo-input {
+    width: 200px;
+  }
+}

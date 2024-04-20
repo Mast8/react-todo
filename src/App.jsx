@@ -1,44 +1,41 @@
-import { useEffect, useState } from "react"
-import { NewTodoForm } from "./Components/NewTodoForm"
-import "./App.css"
+import { useEffect, useState } from "react";
+import { NewTodoForm } from "./Components/NewTodoForm";
+import "./App.css";
 
-import { TodoList } from "./Components/TodoList"
+import { TodoList } from "./Components/TodoList";
 
 export default function App() {
+
   const [todos, setTodos] = useState(() => {
-    const localValue = localStorage.getItem("ITEMS")
+    const localValue = localStorage.getItem("ITEMS");
     if (localValue == null) return []
-    return JSON.parse(localValue)
+    return JSON.parse(localValue);
   })
 
-  const[countTodos, setCountTodos] = useState (todos.length )
-  const[countCompleted, setCountCompleted] = 
-  useState ( 0 )
+  const[countTodos, setCountTodos] = useState (todos.length );
+  const[countCompleted, setCountCompleted] = useState ( 0 );
 
   useEffect(() => {
-    setCountCompleted( todos.filter( todo => todo.completed !== false).length)
-    localStorage.setItem("ITEMS", JSON.stringify(todos))
+    setCountCompleted( todos.filter( todo => todo.completed !== false).length);
+    localStorage.setItem("ITEMS", JSON.stringify(todos));
   }, [todos])
 
   function addTodo(title) {
-      
       setTodos(currentTodos => {
         return [
           ...currentTodos,
           { id: crypto.randomUUID(), title, completed: false },
         ]
-      }); setCountTodos( countTodos +1 )
-
+      }); setCountTodos( countTodos +1 );
   }
 
   function toggleTodo(id, completed) {
-    
     setTodos(currentTodos => {
       return currentTodos.map(todo => {
         if (todo.id === id) {
           return { ...todo, completed }
         }
-        return todo
+        return todo;
       })
     }); 
     
@@ -60,9 +57,9 @@ export default function App() {
       })
     })
   }
+  // get percentage and change class condition
   var Percentage = Math.round(countCompleted/countTodos*100) ;
   let classnamePer ;
-
   if(Percentage > 50 )
      classnamePer = "good" ;
   else  classnamePer = "bad"; 
