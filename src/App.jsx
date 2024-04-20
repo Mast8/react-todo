@@ -61,6 +61,12 @@ export default function App() {
     })
   }
   var Percentage = Math.round(countCompleted/countTodos*100) ;
+  let classnamePer ;
+
+  if(Percentage > 50 )
+     classnamePer = "good" ;
+  else  classnamePer = "bad"; 
+
   return (
     <>
       <h1> To do app</h1>
@@ -70,7 +76,7 @@ export default function App() {
       <div className="totalTodos"> Tasks: {countTodos}
         <div>   Tasks completed: {countCompleted}
         </div>
-        <div>   Tasks Percentage: {Percentage} %
+        <div className={classnamePer}>   Completed Percentage: {Percentage} %
         </div>
       </div>  }
       

@@ -18,16 +18,17 @@ body {
   text-align: center;
 }
 
-h1 {
+ul {
+  color: white;
+}
 
+h1 {
   color: #fff;
   padding-top: 5rem;
   margin-bottom: 0.5rem;
-  
   text-align: center;
-  
-    font-size: 3.2em;
-    line-height: 1.1;
+  font-size: 3.2em;
+  line-height: 1.1;
   
 }
 
@@ -39,6 +40,16 @@ h1 {
   margin: auto;
   color: red;
   margin-bottom: 0.5rem;
+}
+
+.bad {
+  font-size: 20px;
+  color: red;
+}
+
+.good {
+  font-size: 20px;
+  color: green;
 }
 
 .totalTodos {
