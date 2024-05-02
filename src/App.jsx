@@ -69,6 +69,7 @@ export default function App() {
       <h1> To do app</h1>
       <div className="new-item-form">
       <NewTodoForm onSubmit={addTodo} />
+      
       {countTodos > 0 && 
       <div className="totalTodos"> Tasks: {countTodos}
         <div>   Tasks completed: {countCompleted}

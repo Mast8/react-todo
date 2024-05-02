@@ -6,8 +6,9 @@ export function NewTodoForm({ onSubmit }) {
 
   function handleSubmit(e) {
     e.preventDefault()
-    updateMessage(newItem)
-    if( newItem.trim() != "" ){
+    //updateMessage(newItem)
+    //if( newItem.trim() != "" ){
+    if( updateMessage(newItem ) ){
       onSubmit(newItem.trim())
     }
     setNewItem("")
@@ -15,9 +16,16 @@ export function NewTodoForm({ onSubmit }) {
   }
 
   function updateMessage(newItem) {
-    if(newItem.trim() != "") {
-      setMessage("")
-    }else setMessage("Todo can not be empty")
+    let passed = false;
+    if(newItem.trim() == "") {
+      setMessage("Todo can not be empty")
+    }else if(newItem.length < 3)
+            setMessage("Todo needs to be at least 3 characters long")
+          else{
+            passed = true;
+            setMessage("")
+          }
+          return passed;
   }
 
   return (
