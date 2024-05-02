@@ -17,15 +17,16 @@ export function NewTodoForm({ onSubmit }) {
 
   function updateMessage(newItem) {
     let passed = false;
-    if(newItem.trim() == "") {
+    let todo = newItem.trim();
+    if(todo == "") {
       setMessage("Todo can not be empty")
-    }else if(newItem.length < 3)
+    }else if( todo.length < 3)
             setMessage("Todo needs to be at least 3 characters long")
           else{
             passed = true;
             setMessage("")
           }
-          return passed;
+    return passed;
   }
 
   return (
